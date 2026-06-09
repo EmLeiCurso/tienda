@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 @Controller
 @RequestMapping("/categoria")
 public class CategoriaController {
@@ -25,7 +24,6 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
         this.messageSource = messageSource;
     }
-
     @GetMapping("/listado")
     public String listado(Model model) {
         var categorias = categoriaService.getCategorias(false);
@@ -33,7 +31,6 @@ public class CategoriaController {
         model.addAttribute("totalCategorias", categorias.size());
         return "/categoria/listado";
     }
-
     @PostMapping("/guardar")
     public String guardar(@Valid Categoria categoria, @RequestParam MultipartFile imagenFile, RedirectAttributes redirectAttributes) {
         categoriaService.save(categoria, imagenFile);
