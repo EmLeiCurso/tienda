@@ -19,10 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/categoria")
 public class CategoriaController {
-
     private final CategoriaService categoriaService;
     private final MessageSource messageSource;
-
     public CategoriaController(CategoriaService categoriaService, MessageSource messageSource) {
         this.categoriaService = categoriaService;
         this.messageSource = messageSource;
@@ -38,10 +36,8 @@ public class CategoriaController {
 
     @PostMapping("/guardar")
     public String guardar(@Valid Categoria categoria, @RequestParam MultipartFile imagenFile, RedirectAttributes redirectAttributes) {
-
         categoriaService.save(categoria, imagenFile);
         redirectAttributes.addFlashAttribute("todoOk", messageSource.getMessage("mensaje.actualizado", null, Locale.getDefault()));
-
         return "redirect:/categoria/listado";
     }
 
