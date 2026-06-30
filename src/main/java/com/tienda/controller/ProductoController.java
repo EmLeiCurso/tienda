@@ -97,8 +97,9 @@ public class ProductoController {
         model.addAttribute("producto", productoOpt.get());
         var categorias = categoriaService.getCategorias(true);
         model.addAttribute("categorias", categorias);
-
+        
         return "/producto/modifica";
     }
 
+    
 }
