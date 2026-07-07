@@ -10,6 +10,7 @@
                 <i class="fa-solid fa-plus"></i> [[#{categoria.agregar}]]</button>
         </div>
     </div>
+    
     <!-- Modal -->
     <div class="modal fade" id="agregarCategoriaModal"  tabindex="-1" 
          aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -47,6 +48,7 @@
     </div>
 </section>
 
+
 <!-- fragmento 2 para el listado de categorias -->
 <section th:fragment="listado" class="p-3">
     <div class="row p-3">
@@ -69,12 +71,14 @@
                                     <td>[[${c.descripcion}]]</td>
                                     <td><img th:src="@{${c.rutaImagen}}" alt="noData" height="75"/></td>
                                     <td th:text="${c.activo} ? 'Activa':'Inactiva'"></td>
-                                    <td>
+                                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                        
                                         <button type="button" class="btn btn-danger"
                                                 data-bs-toggle="modal" data-bs-target="#confirmModal"
                                                 th:data-bs-id="${c.idCategoria}"
                                                 th:data-bs-descripcion="${c.descripcion}">
                                             <i class="fa-solid fa-trash"></i> [[#{accion.eliminar}]]
+                                            
                                         </button>                                           
                                         <a th:href="@{/categoria/modificar/}+${c.idCategoria}" class="btn btn-warning">
                                             <i class="fas fa-pencil-alt"></i> [[#{accion.actualizar}]]
